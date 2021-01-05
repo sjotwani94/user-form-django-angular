@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" ng-app="ValidationCheck" style="padding-left: 10%; margin: auto;">
+    <div class="row">
+        <div class="col-lg-10" ng-controller="ValidationCheckController as validCheck">
+            <h1 style="text-align: center;">User Form</h1>
+            <hr/>
+            <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input id="name" type="text" name="name"
+                placeholder="Enter your name here"
+                class="form-control" ng-model="validName">
+            </div>
+            <div class="form-group">
+                <input id="date_of_birth" type="date" name="date_of_birth"
+                placeholder="Select Date Of Birth"
+                class="form-control" ng-model="validDOB">
+            </div>
+            <div class="form-group">
+                <input id="email_id" type="text" name="email_id"
+                placeholder="Enter your valid Email-ID"
+                class="form-control" ng-model="validEmail">
+            </div>
+            <div class="form-group">
+                <input id="phone_num" type="number" name="phone_num"
+                placeholder="Enter your valid Phone Number"
+                class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default" style="background-color: #00FF00;" ng-click="checkValidity()">Check Validations</button>
+            </div>
+            <div ng-show="look" class="alert alert-danger">Please Check: {$look$}</div>
+            <div ng-show="success" class="alert alert-success">{$success$}</div>
+            <div class="form-group">
+                <input id="submit" type="submit" value="Submit"
+                class="form-control" ng-disabled="vstatus">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
